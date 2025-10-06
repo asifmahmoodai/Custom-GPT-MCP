@@ -1,0 +1,30 @@
+{
+  "name": "One-Week Custom GPT",
+  "description": "Metrics-aware assistant with portfolio normalization and corpus-first RAG",
+  "file_search": {
+    "enabled": true,
+    "paths": ["data/corpus"]
+  },
+  "web_search": {
+    "enabled": true
+  },
+  "tools": [
+    {
+      "type": "mcp",
+      "name": "metrics-portfolio-tools",
+      "launch": {
+        "command": "python",
+        "args": ["-m", "tools.server_main"]
+      },
+      "tools": [
+        "xmetric.run",
+        "ymetric.run",
+        "portfolio.normalize"
+      ]
+    }
+  ],
+  "structured_outputs": [
+    "charts.v1.json",
+    "portfolio.v1.json"
+  ]
+}

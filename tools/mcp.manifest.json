@@ -1,0 +1,71 @@
+{
+  "schema": "1.0",
+  "name": "metrics-portfolio-tools",
+  "version": "0.1.0",
+  "description": "Metrics and portfolio MCP tools for the One-Week Custom GPT",
+  "commands": [
+    {
+      "name": "xmetric.run",
+      "description": "Run computations on the xmetric CSV table and return a time-series chart",
+      "input_schema": "schemas/xmetric.v1.json#/properties/request",
+      "output_schema": "schemas/charts.v1.json#/$defs/timeseries",
+      "examples": [
+        {
+          "input": {"columns": ["value"], "scale": 1.0, "offset": 0.0, "groupby": "series"},
+          "output": {
+            "chart_type": "timeseries",
+            "series": [
+              {
+                "name": "A:value",
+                "points": [
+                  {"t": "2023-01-01T00:00:00Z", "v": 100.0}
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "ymetric.run",
+      "description": "Generate scatter points from the ymetric parquet table",
+      "input_schema": "schemas/ymetric.v1.json#/properties/request",
+      "output_schema": "schemas/charts.v1.json#/$defs/scatter",
+      "examples": [
+        {
+          "input": {"x_col": "x", "y_col": "y", "label_col": "label"},
+          "output": {
+            "chart_type": "scatter",
+            "points": [
+              {"x": 1.0, "y": 2.0, "label": "pt_00"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "portfolio.normalize",
+      "description": "Normalize portfolio weights from uploaded rows",
+      "input_schema": "schemas/portfolio.v1.json#/properties/request",
+      "output_schema": "schemas/portfolio.v1.json#/properties/response",
+      "examples": [
+        {
+          "input": {
+            "rows": [
+              {"ticker": "AAPL", "weight": 0.5},
+              {"ticker": "MSFT", "weight": 0.5}
+            ]
+          },
+          "output": {
+            "normalized_rows": [
+              {"ticker": "AAPL", "weight": 0.5},
+              {"ticker": "MSFT", "weight": 0.5}
+            ],
+            "sum": 1.0,
+            "warnings": []
+          }
+        }
+      ]
+    }
+  ]
+}

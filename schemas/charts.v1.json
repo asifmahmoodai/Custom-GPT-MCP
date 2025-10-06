@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "charts.v1.json",
+  "type": "object",
+  "oneOf": [
+    {"$ref": "#/$defs/timeseries"},
+    {"$ref": "#/$defs/scatter"}
+  ],
+  "$defs": {
+    "timeseries": {
+      "title": "TimeSeries",
+      "type": "object",
+      "properties": {
+        "chart_type": {"const": "timeseries"},
+        "series": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "points": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "t": {"type": "string", "format": "date-time"},
+                    "v": {"type": "number"}
+                  },
+                  "required": ["t", "v"],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": ["name", "points"],
+            "additionalProperties": false
+          }
+        },
+        "meta": {"type": "object"}
+      },
+      "required": ["chart_type", "series"],
+      "additionalProperties": false
+    },
+    "scatter": {
+      "title": "Scatter",
+      "type": "object",
+      "properties": {
+        "chart_type": {"const": "scatter"},
+        "points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "x": {"type": "number"},
+              "y": {"type": "number"},
+              "label": {"type": "string"}
+            },
+            "required": ["x", "y"],
+            "additionalProperties": false
+          }
+        },
+        "meta": {"type": "object"}
+      },
+      "required": ["chart_type", "points"],
+      "additionalProperties": false
+    }
+  }
+}
