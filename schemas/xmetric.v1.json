@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "xmetric.v1.json",
+  "type": "object",
+  "properties": {
+    "request": {
+      "type": "object",
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": {"type": "string"},
+          "minItems": 1
+        },
+        "scale": {"type": "number", "default": 1.0},
+        "offset": {"type": "number", "default": 0.0},
+        "groupby": {"type": ["string", "null"]},
+        "date_col": {"type": "string", "default": "date"}
+      },
+      "required": ["columns"],
+      "additionalProperties": false
+    },
+    "response": {
+      "$ref": "charts.v1.json#/$defs/timeseries"
+    }
+  },
+  "required": ["request", "response"],
+  "additionalProperties": false
+}

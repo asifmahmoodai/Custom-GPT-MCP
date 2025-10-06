@@ -1,0 +1,5 @@
+{"prompt": "Run xmetric for value column"}
+{"prompt": "Create ymetric scatter between x and y"}
+{"prompt": "Normalize this portfolio", "attachment": "data/portfolios/sample_portfolio.csv"}
+{"prompt": "Summarize inflation trends"}
+{"prompt": "What happened to GDP last week?"}

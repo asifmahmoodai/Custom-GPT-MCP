@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "portfolio.v1.json",
+  "type": "object",
+  "properties": {
+    "request": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ticker": {"type": "string"},
+              "weight": {"type": "number"}
+            },
+            "required": ["ticker", "weight"],
+            "additionalProperties": false
+          }
+        },
+        "csv_text": {"type": "string"},
+        "xlsx_base64": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "response": {
+      "type": "object",
+      "properties": {
+        "normalized_rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ticker": {"type": "string"},
+              "weight": {"type": "number"}
+            },
+            "required": ["ticker", "weight"],
+            "additionalProperties": false
+          }
+        },
+        "sum": {"type": "number"},
+        "warnings": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "required": ["normalized_rows", "sum"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["request", "response"],
+  "additionalProperties": false
+}

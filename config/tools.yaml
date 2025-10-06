@@ -1,0 +1,13 @@
+xmetric:
+  enabled: true
+  allowed_columns: ["value"]
+  default_scale: 1.0
+  default_offset: 0.0
+ymetric:
+  enabled: true
+  default_scale: 1.0
+  default_offset: 0.0
+  max_points: 1000
+portfolio:
+  enabled: true
+  allowed_tickers: ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "NFLX", "NVDA", "META"]

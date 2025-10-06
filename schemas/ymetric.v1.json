@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ymetric.v1.json",
+  "type": "object",
+  "properties": {
+    "request": {
+      "type": "object",
+      "properties": {
+        "x_col": {"type": "string"},
+        "y_col": {"type": "string"},
+        "scale": {"type": "number", "default": 1.0},
+        "offset": {"type": "number", "default": 0.0},
+        "label_col": {"type": ["string", "null"]}
+      },
+      "required": ["x_col", "y_col"],
+      "additionalProperties": false
+    },
+    "response": {
+      "$ref": "charts.v1.json#/$defs/scatter"
+    }
+  },
+  "required": ["request", "response"],
+  "additionalProperties": false
+}
